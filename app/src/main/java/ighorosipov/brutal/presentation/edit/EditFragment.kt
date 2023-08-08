@@ -13,6 +13,7 @@ import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +24,7 @@ import ighorosipov.brutal.databinding.FragmentEditBinding
 import ighorosipov.brutal.domain.model.Cocktail
 import ighorosipov.brutal.presentation.COCKTAIL
 import ighorosipov.brutal.presentation.SPLIT_INGREDIENT_CHARS
+import ighorosipov.brutal.presentation.main.MainFragment
 
 class EditFragment : Fragment() {
     private var mBinding: FragmentEditBinding? = null
@@ -81,7 +83,9 @@ class EditFragment : Fragment() {
         val cocktail = validateData()
         cocktail?.let {
             viewModel.insertCocktail(it)
-            activity?.supportFragmentManager?.popBackStack()
+            activity?.supportFragmentManager?.commit {
+                replace(R.id.mainContainer, MainFragment())
+            }
         }
     }
 
