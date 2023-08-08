@@ -15,7 +15,7 @@ import ighorosipov.brutal.presentation.SPLIT_INGREDIENT_CHARS
 import ighorosipov.brutal.presentation.edit.EditFragment
 import ighorosipov.brutal.presentation.main.MainFragment
 
-class DetailsFragment: Fragment() {
+class DetailsFragment : Fragment() {
     private var mBinding: FragmentDetailsBinding? = null
     private val binding get() = mBinding!!
     private val viewModel by viewModels<DetailsViewModel>()
@@ -43,7 +43,7 @@ class DetailsFragment: Fragment() {
     }
 
     private fun cocktailObserver() {
-        viewModel.cocktail.observe(viewLifecycleOwner) {cocktail ->
+        viewModel.cocktail.observe(viewLifecycleOwner) { cocktail ->
             binding.apply {
                 titleText.text = cocktail.title
                 descriptionText.text = cocktail.description
@@ -55,7 +55,7 @@ class DetailsFragment: Fragment() {
 
     private fun splitString(string: String) {
         val ingredientList = string.split(SPLIT_INGREDIENT_CHARS)
-        ingredientList.forEach {ingredient ->
+        ingredientList.forEach { ingredient ->
             val text = "${binding.ingredientText.text}\n -\n$ingredient"
             binding.ingredientText.text = text
         }
@@ -79,6 +79,7 @@ class DetailsFragment: Fragment() {
         binding.deleteButton.setOnClickListener {
             viewModel.cocktail.value?.let {
                 viewModel.deleteCocktail(it)
+                activity?.supportFragmentManager?.popBackStack()
                 activity?.supportFragmentManager?.commit {
                     replace(R.id.mainContainer, MainFragment())
                 }
