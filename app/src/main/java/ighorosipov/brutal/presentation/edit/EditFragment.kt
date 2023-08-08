@@ -83,9 +83,7 @@ class EditFragment : Fragment() {
         val cocktail = validateData()
         cocktail?.let {
             viewModel.insertCocktail(it)
-            activity?.supportFragmentManager?.commit {
-                replace(R.id.mainContainer, MainFragment())
-            }
+            activity?.supportFragmentManager?.popBackStack()
         }
     }
 

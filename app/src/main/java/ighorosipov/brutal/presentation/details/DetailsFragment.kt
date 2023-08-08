@@ -9,6 +9,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import ighorosipov.brutal.R
 import ighorosipov.brutal.databinding.FragmentDetailsBinding
+import ighorosipov.brutal.presentation.COCKTAIL
 import ighorosipov.brutal.presentation.COCKTAIL_ID
 import ighorosipov.brutal.presentation.SPLIT_INGREDIENT_CHARS
 import ighorosipov.brutal.presentation.edit.EditFragment
@@ -63,7 +64,7 @@ class DetailsFragment: Fragment() {
     private fun editCocktail() {
         binding.editButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("cocktail", viewModel.cocktail.value)
+            bundle.putSerializable(COCKTAIL, viewModel.cocktail.value)
             val editFragment = EditFragment()
             editFragment.arguments = bundle
             activity?.supportFragmentManager?.commit {
