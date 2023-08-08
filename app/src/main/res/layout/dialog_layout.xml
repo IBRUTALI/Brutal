@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    android:padding="40dp"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/add_ingredients"
+        android:textSize="40sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleInputLayout"
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/ingredient"
+        app:boxCornerRadiusBottomEnd="40dp"
+        app:boxCornerRadiusBottomStart="40dp"
+        app:boxCornerRadiusTopEnd="40dp"
+        app:boxCornerRadiusTopStart="40dp"
+        app:boxStrokeErrorColor="@color/red_lite"
+        app:boxStrokeWidth="1dp"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorTextAppearance"
+        app:errorTextColor="@color/red_lite"
+        app:helperText="Add title"
+        app:helperTextTextAppearance="@style/HelperTextAppearance"
+        app:hintTextAppearance="@style/ErrorTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCardView">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/didact_gothic_regular" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:backgroundTint="@color/blue_lite"
+        android:layout_marginHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/didact_gothic_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeInputLayout" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="@color/white"
+        app:strokeColor="@color/blue_lite"
+        app:strokeWidth="2dp"
+        android:textColor="@color/blue_lite"
+        android:fontFamily="@font/didact_gothic_regular"
+        android:paddingVertical="10dp"
+        android:text="@string/cancel"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
+
+
+</LinearLayout>
