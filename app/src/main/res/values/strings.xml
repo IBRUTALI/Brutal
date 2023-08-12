@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Brutal</string>
+    <string name="app_name">CocktailApp</string>
     <string name="my_cocktails">My cocktails</string>
     <string name="main_image">main image</string>
     <string name="add_your_first_cocktail_here">Add your first \ncocktail here</string>
@@ -17,4 +17,9 @@
     <string name="edit">Edit</string>
     <string name="recipe_title">Recipe:</string>
     <string name="delete">Delete</string>
+    <string name="add_title">Add title</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="yes">Yes</string>
+    <string name="dialog_delete_the_recipe">Are you sure you want to delete the recipe?</string>
+    <string name="confirm_action">Confirm action</string>
 </resources>
