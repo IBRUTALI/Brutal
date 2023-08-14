@@ -1,12 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Brutal" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:textViewStyle">@style/MainTextViewStyle</item>
-        <item name="android:buttonStyle">@style/MainButtonStyle</item>
-        <item name="android:editTextStyle">@style/MainButtonStyle</item>
+    <style name="Base.Theme.CocktailApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/blue_lite</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.Brutal" parent="Base.Theme.Brutal" />
+    <style name="Theme.CocktailApp" parent="Base.Theme.CocktailApp" />
 </resources>

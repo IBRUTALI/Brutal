@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".presentation.edit.EditFragment">
+    tools:context=".presentation.edit.EditFragment"
+    android:layout_margin="15dp" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imageCardView"
@@ -35,23 +36,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titleInputLayout"
-            style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:hint="@string/title"
-            app:boxCornerRadiusBottomEnd="40dp"
-            app:boxCornerRadiusBottomStart="40dp"
-            app:boxCornerRadiusTopEnd="40dp"
-            app:boxCornerRadiusTopStart="40dp"
-            app:boxStrokeErrorColor="@color/red_lite"
-            app:boxStrokeWidth="1dp"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:errorTextColor="@color/red_lite"
             app:helperText="Add title"
-            app:helperTextTextAppearance="@style/HelperTextAppearance"
-            app:hintTextAppearance="@style/ErrorTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageCardView">
@@ -60,28 +50,17 @@
                 android:id="@+id/titleEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/didact_gothic_regular" />
+                android:textAppearance="@style/Text.InputLayout.Normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionInputLayout"
-            style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/description"
-            app:boxCornerRadiusBottomEnd="40dp"
-            app:boxCornerRadiusBottomStart="40dp"
-            app:boxCornerRadiusTopEnd="40dp"
-            app:boxCornerRadiusTopStart="40dp"
-            app:boxStrokeErrorColor="@color/red_lite"
-            app:boxStrokeWidth="1dp"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:errorTextColor="@color/red_lite"
             app:helperText="Optional field"
-            app:helperTextTextAppearance="@style/HelperTextAppearance"
-            app:hintTextAppearance="@style/ErrorTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleInputLayout">
@@ -90,7 +69,7 @@
                 android:id="@+id/descriptionEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/didact_gothic_regular" />
+                android:textAppearance="@style/Text.InputLayout.Normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,22 +102,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/recipeInputLayout"
-            style="@style/Widget.Material3.TextInputEditText.OutlinedBox.Dense"
+            style="@style/TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/recipe"
-            app:boxCornerRadiusBottomEnd="40dp"
-            app:boxCornerRadiusBottomStart="40dp"
-            app:boxCornerRadiusTopEnd="40dp"
-            app:boxCornerRadiusTopStart="40dp"
-            app:boxStrokeErrorColor="@color/red_lite"
-            app:boxStrokeWidth="1dp"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorTextAppearance"
-            app:errorTextColor="@color/red_lite"
             app:helperText="Optional field"
-            app:helperTextTextAppearance="@style/HelperTextAppearance"
-            app:hintTextAppearance="@style/ErrorTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +116,7 @@
                 android:id="@+id/recipeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/didact_gothic_regular" />
+                android:textAppearance="@style/Text.InputLayout.Normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,33 +124,24 @@
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:backgroundTint="@color/blue_lite"
-            android:fontFamily="@font/didact_gothic_regular"
+            style="@style/BaseButton.Main"
             android:paddingVertical="10dp"
             android:text="@string/save"
-            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipeInputLayout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButton"
+            style="@style/BaseButton.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="6dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/didact_gothic_regular"
             android:paddingVertical="10dp"
             android:text="@string/cancel"
-            android:textColor="@color/blue_lite"
-            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saveButton"
-            app:strokeColor="@color/blue_lite"
-            app:strokeWidth="2dp" />
+            app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package ighorosipov.cocktailapp.presentation.edit
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -173,6 +175,7 @@ class EditFragment : Fragment() {
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_layout, null)
         builder.setView(customDialog)
         val dialog = builder.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val buttonAdd = customDialog.findViewById<Button>(R.id.addButton)
         val buttonCancel = customDialog.findViewById<Button>(R.id.cancelButton)
         val editText = customDialog.findViewById<TextInputEditText>(R.id.titleEditText)

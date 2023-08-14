@@ -5,4 +5,5 @@
     <color name="blue_lite">#4B97FF</color>
     <color name="gray">#CAC4D0</color>
     <color name="red_lite">#FF0000</color>
+    <color name="transparent">#00000000</color>
 </resources>
