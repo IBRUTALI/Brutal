@@ -90,7 +90,7 @@ class EditFragment : Fragment() {
 
     private fun subscribeOnInsert() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            if (!isLoading) findNavController().popBackStack()
+            if (isLoading) findNavController().popBackStack()
         }
     }
 
@@ -112,7 +112,7 @@ class EditFragment : Fragment() {
                 chipGroup.forEach { view ->
                     when (view) {
                         is Chip -> {
-                            val text = "${view.text}\n"
+                            val text = "${view.text}\n - \n"
                             ingredients.append(text)
                         }
                     }

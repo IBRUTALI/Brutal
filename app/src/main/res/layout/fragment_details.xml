@@ -1,120 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    tools:context=".presentation.details.DetailsFragment">
+    android:animateLayoutChanges="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <ImageView
+        android:id="@+id/detailsImage"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+        android:layout_height="360dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cocktail" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cardViewTopGuideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/details_card_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-54dp"
+        app:cardCornerRadius="@dimen/base_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewTopGuideline">
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:expandedTitleMarginBottom="25dp"
-            app:expandedTitleMarginStart="15dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:paddingBottom="@dimen/base_corner_radius"
+            android:scrollbars="none" >
 
-            <ImageView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                android:src="@drawable/cocktail"
-                app:layout_collapseMode="parallax" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:text="@string/title"
-                android:textColor="@color/black"
-                android:textSize="50sp" />
-
-            <TextView
-                android:id="@+id/descriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:text="@string/title"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/ingredientText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
                 android:gravity="center_horizontal"
-                android:textSize="30sp"
-                tools:text="@string/title" />
+                android:orientation="vertical"
+                android:padding="@dimen/base_padding_medium">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:text="@string/recipe_title"
-                android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_padding_small"
+                    android:textAppearance="@style/Text.Subtitle"
+                    tools:text="Pink Lemonade" />
 
-            <TextView
-                android:id="@+id/recipeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="@string/title"
-                android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/descriptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_padding_medium"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/Text.Normal"
+                    tools:text="To make this homemade pink lemonade, simply combine all the ingredients in a pitcher." />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editButton"
-                style="@style/BaseButton.Main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:paddingVertical="10dp"
-                android:text="@string/edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipeInputLayout" />
+                <TextView
+                    android:id="@+id/ingredientsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_padding_big"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/Text.Normal"
+                    tools:text="9 cups water\n—\n2 cups white sugar\n—\n2 cups fresh lemon juice\n—\n1 cup cranberry juice, chilled\n—\nice as needed" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/deleteButton"
-                style="@style/BaseButton.Secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:paddingVertical="10dp"
-                android:text="@string/delete"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipeInputLayout" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/recipeHelperText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base_padding_big"
+                    android:gravity="center_horizontal"
+                    android:text="@string/recipe_title"
+                    android:textAppearance="@style/Text.Subnormal" />
+
+                <TextView
+                    android:id="@+id/recipeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/Text.Normal"
+                    tools:text="Muddle lime with leaves from the mint using a pestle and mortar. Mix with sprite. Add ice if needed." />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/editButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/base_padding_small"
+                    android:layout_marginVertical="@dimen/base_padding_small"
+                    style="@style/BaseButton.Main"
+                    android:text="@string/edit" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/deleteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/base_padding_small"
+                    style="@style/BaseButton.Secondary"
+                    android:text="@string/delete" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

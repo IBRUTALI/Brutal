@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="base_corner_radius">54dp</dimen>
+    <dimen name="base_padding_small">10dp</dimen>
+    <dimen name="base_padding_medium">15dp</dimen>
+    <dimen name="base_padding_big">32dp</dimen>
+    <dimen name="base_padding_layout">15dp</dimen>
+    <dimen name="base_image_size">180dp</dimen>
+    <dimen name="base_padding_large">40dp</dimen>
+    <dimen name="bottomappbar_corners_radius">80dp</dimen>
+    <dimen name="bottomappbar_height">62dp</dimen>
+</resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_radius_50"
+    android:background="@drawable/shape_radius_54"
     android:fitsSystemWindows="true"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:textAppearance="@style/Text.InputLayout.Normal" />
+            android:textAppearance="@style/Text.Normal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

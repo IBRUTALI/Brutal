@@ -15,7 +15,7 @@ class EditViewModel @AssistedInject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
-    private val _isLoading = MutableLiveData(true)
+    private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun insertCocktail(cocktail: Cocktail) {

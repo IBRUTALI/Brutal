@@ -15,19 +15,6 @@
         <item name="android:fontFamily">@font/didact_gothic_regular</item>
     </style>
 
-    <!-- Edit text error colors. -->
-    <style name="ErrorTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/red_lite</item>
-        <item name="android:textSize">12sp</item>
-        <item name="fontFamily">@font/didact_gothic_regular</item>
-    </style>
-
-    <style name="HelperTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/red_lite</item>
-        <item name="android:textSize">16sp</item>
-        <item name="fontFamily">@font/didact_gothic_regular</item>
-    </style>
-
     <!-- Card view border colors. -->
     <style name="CardViewBorder" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@android:color/white</item>
@@ -43,11 +30,13 @@
         <item name="android:fontFamily">@font/didact_gothic_regular</item>
     </style>
 
-    <style name="Text.InputLayout">
-        <item name="android:textColor">@color/gray</item>
+    <!-- Edit text error colors. -->
+    <style name="Text.ErrorText">
+        <item name="android:textColor">@color/red_lite</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Text.InputLayout.Hint">
+    <style name="Text.Hint">
         <item name="android:textSize">12sp</item>
     </style>
 
@@ -55,7 +44,7 @@
         <item name="android:textSize">36sp</item>
     </style>
 
-    <style name="Text.InputLayout.Subtitle">
+    <style name="Text.Subtitle">
         <item name="android:textSize">32sp</item>
     </style>
 
@@ -64,11 +53,11 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="Text.InputLayout.Normal">
+    <style name="Text.Normal">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Text.InputLayout.Subnormal">
+    <style name="Text.Subnormal">
         <item name="android:textSize">14sp</item>
     </style>
 
@@ -80,13 +69,13 @@
         <item name="boxCornerRadiusBottomEnd">56dp</item>
         <item name="errorEnabled">true</item>
         <item name="boxStrokeErrorColor">@color/red_lite</item>
-        <item name="errorTextAppearance">@style/ErrorTextAppearance</item>
+        <item name="errorTextAppearance">@style/Text.ErrorText</item>
         <item name="errorTextColor">@color/red_lite</item>
-        <item name="helperTextTextAppearance">@style/Text.InputLayout.Hint</item>
+        <item name="helperTextTextAppearance">@style/Text.Hint</item>
         <item name="helperTextTextColor">@color/gray</item>
-        <item name="hintTextAppearance">@style/Text.InputLayout.Hint</item>
+        <item name="hintTextAppearance">@style/Text.Hint</item>
         <item name="hintTextColor">@color/gray</item>
-        <item name="placeholderTextAppearance">@style/Text.InputLayout.Normal</item>
+        <item name="placeholderTextAppearance">@style/Text.Normal</item>
     </style>
 
     <style name="BaseButton" parent="Widget.Material3.Button">

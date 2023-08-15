@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.main.MainFragment">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/mainTitle"
+        style="@style/Text.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/base_padding_large"
         android:text="@string/my_cocktails"
-        android:textSize="30sp"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,64 +41,81 @@
         android:contentDescription="@string/main_image"
         android:src="@drawable/summer_girl"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mainRecycler"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.1" />
+
+    <ProgressBar
+        android:id="@+id/loading_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/emptyTitle"
+        style="@style/Text.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:text="@string/my_cocktails"
-        android:textSize="30sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/emptyDescription"
         app:layout_constraintEnd_toEndOf="@+id/mainImage"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/mainImage" />
+        app:layout_constraintStart_toStartOf="@+id/mainImage"
+        app:layout_constraintTop_toBottomOf="@+id/mainImage" />
 
     <TextView
         android:id="@+id/emptyDescription"
+        style="@style/Text.Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginVertical="@dimen/base_padding_big"
         android:gravity="center"
         android:lines="2"
         android:text="@string/add_your_first_cocktail_here"
         android:textColor="@color/gray"
-        android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/emptyArrow"
         app:layout_constraintEnd_toEndOf="@+id/emptyTitle"
-        app:layout_constraintStart_toStartOf="@+id/emptyTitle" />
+        app:layout_constraintStart_toStartOf="@+id/emptyTitle"
+        app:layout_constraintTop_toBottomOf="@+id/emptyTitle" />
 
     <ImageView
         android:id="@+id/emptyArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/gray_200"
+        android:layout_marginVertical="@dimen/base_padding_medium"
         android:src="@drawable/arrow_down"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="@+id/emptyDescription"
-        app:layout_constraintStart_toStartOf="@+id/emptyDescription" />
+        app:layout_constraintStart_toStartOf="@+id/emptyDescription"
+        app:layout_constraintTop_toBottomOf="@+id/emptyDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottomappbar_height"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:fabCradleVerticalOffset="8dp"
+        app:fabCradleMargin="8dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton"
         style="@style/MainFabStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_anchor="@id/bottomAppBar"
         android:clickable="true"
         app:backgroundTint="@color/blue_lite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainRecycler"
-        app:layout_constraintVertical_bias="0.97"
         app:srcCompat="@drawable/plus"
         app:tint="@color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -16,7 +16,7 @@ class DetailsViewModel @AssistedInject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
-    private val _isLoading = MutableLiveData(true)
+    private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _cocktail = MutableLiveData<Result<Cocktail>>()
@@ -32,7 +32,7 @@ class DetailsViewModel @AssistedInject constructor(
     fun deleteCocktail(cocktail: Cocktail) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteCocktail(cocktail)
-            _isLoading.postValue(false)
+            _isLoading.postValue(true)
         }
     }
 

@@ -9,7 +9,11 @@ fun Fragment.showToast(
     message: String,
     longLength: Boolean = false
 ) {
-    Toast.makeText(requireContext(), message, if (longLength) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
+    Toast.makeText(
+        requireContext(),
+        message,
+        if (longLength) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+    ).show()
 }
 
 fun Fragment.showAlert(
@@ -23,5 +27,6 @@ fun Fragment.showAlert(
         .setPositiveButton(R.string.yes) { _, _ ->
             onClick.invoke()
         }
+        .setNegativeButton(getString(R.string.no)) { _, _ -> }
         .show()
 }

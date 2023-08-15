@@ -46,9 +46,9 @@ class DetailsFragment : Fragment() {
     }
 
     private fun subscribeOnLoading() {
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            if(!it)
-            findNavController().navigate(R.id.action_detailsFragment_to_mainFragment)
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading)
+                findNavController().navigate(R.id.action_detailsFragment_to_mainFragment)
         }
     }
 
@@ -58,7 +58,7 @@ class DetailsFragment : Fragment() {
                 cocktail.data?.let {
                     titleText.text = it.name
                     descriptionText.text = it.description
-                    ingredientText.text = it.ingredients.joinToString("\n")
+                    ingredientsText.text = it.ingredients.joinToString("\n")
                     recipeText.text = it.recipe
                 }
             }
