@@ -10,24 +10,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="20dp"
-        app:cardCornerRadius="38dp">
+        app:cardCornerRadius="@dimen/base_corner_radius">
 
         <ImageView
             android:id="@+id/itemImage"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/cocktail" />
 
         <TextView
             android:id="@+id/itemTitle"
+            style="@style/Text.Normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="20dp"
             android:text="@string/cocktail_title"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            />
 
     </androidx.cardview.widget.CardView>
 

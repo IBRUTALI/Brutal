@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".presentation.main.MainFragment">
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +33,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mainTitle"
+        tools:listitem="@layout/item_cocktail"/>
 
     <ImageView
         android:id="@+id/mainImage"
@@ -102,9 +104,11 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomappbar_height"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:backgroundTint="?attr/colorPrimarySurface"
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
-        app:fabCradleVerticalOffset="8dp"
+        app:fabCradleRoundedCornerRadius="0dp"
         app:fabCradleMargin="8dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -112,6 +116,7 @@
         style="@style/MainFabStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:fabCustomSize="@dimen/fab_size"
         app:layout_anchor="@id/bottomAppBar"
         android:clickable="true"
         app:backgroundTint="@color/blue_lite"

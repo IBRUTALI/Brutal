@@ -65,7 +65,7 @@ class EditFragment : Fragment() {
             chip.setOnCloseIconClickListener {
                 binding.chipGroup.removeView(chip)
             }
-            binding.chipGroup.addView(chip)
+            binding.chipGroup.addView(chip, 0)
         }
     }
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.FragmentMainBinding
 import ighorosipov.cocktailapp.domain.model.Cocktail
@@ -36,6 +38,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setBottomAppBarBackground()
         setupAdapter()
         getCocktails()
         cocktailsObserver()
@@ -101,6 +104,15 @@ class MainFragment : Fragment() {
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_editFragment)
         }
+    }
+
+    private fun setBottomAppBarBackground() {
+        val radius = resources.getDimension(R.dimen.bottomappbar_corners_radius)
+        val bottomBarBackground = binding.bottomAppBar.background as MaterialShapeDrawable
+        bottomBarBackground.shapeAppearanceModel =
+            bottomBarBackground.shapeAppearanceModel.toBuilder()
+                .setTopRightCorner(CornerFamily.ROUNDED, radius)
+                .setTopLeftCorner(CornerFamily.ROUNDED, radius).build()
     }
 
     private fun inject() {

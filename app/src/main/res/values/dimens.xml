@@ -9,4 +9,5 @@
     <dimen name="base_padding_large">40dp</dimen>
     <dimen name="bottomappbar_corners_radius">80dp</dimen>
     <dimen name="bottomappbar_height">62dp</dimen>
+    <dimen name="fab_size">80dp</dimen>
 </resources>
