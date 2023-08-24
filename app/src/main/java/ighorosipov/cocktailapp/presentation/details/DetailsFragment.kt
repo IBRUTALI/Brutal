@@ -2,6 +2,7 @@ package ighorosipov.cocktailapp.presentation.details
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,7 @@ class DetailsFragment : Fragment() {
                 cocktail.data?.let {
                     titleText.text = it.name
                     descriptionText.text = it.description
-                    ingredientsText.text = it.ingredients.joinToString("\n")
+                    ingredientsText.text = TextUtils.join("\n-\n", it.ingredients)
                     recipeText.text = it.recipe
                 }
             }

@@ -1,29 +1,24 @@
 package ighorosipov.cocktailapp.presentation.edit
 
-import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.forEach
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.FragmentEditBinding
 import ighorosipov.cocktailapp.domain.model.Cocktail
 import ighorosipov.cocktailapp.presentation.BUNDLE_COCKTAIL
+import ighorosipov.cocktailapp.presentation.edit.dialog.IngredientAddingDialog
 import ighorosipov.cocktailapp.presentation.utils.extensions.appComponent
 import ighorosipov.cocktailapp.presentation.utils.extensions.lazyViewModel
+import ighorosipov.cocktailapp.presentation.utils.extensions.showToast
 
 class EditFragment : Fragment() {
     private var mBinding: FragmentEditBinding? = null
@@ -52,7 +47,7 @@ class EditFragment : Fragment() {
 
     private fun addIngredientButton() {
         binding.addIngredient.setOnClickListener {
-            openDialog()
+            openAddingIngredientDialog()
         }
     }
 
@@ -71,7 +66,7 @@ class EditFragment : Fragment() {
 
     private fun saveButton() {
         binding.saveButton.setOnClickListener {
-                insertCocktail()
+            insertCocktail()
         }
     }
 
@@ -100,8 +95,7 @@ class EditFragment : Fragment() {
                 titleInputLayout.error = getString(R.string.add_title)
                 null
             } else if (chipGroup.size == 1) {
-                Toast.makeText(requireContext(),
-                    getString(R.string.add_ingredient), Toast.LENGTH_SHORT).show()
+                showToast(getString(R.string.add_ingredient), false)
                 null
             } else {
                 val image = null
@@ -112,7 +106,7 @@ class EditFragment : Fragment() {
                 chipGroup.forEach { view ->
                     when (view) {
                         is Chip -> {
-                            val text = "${view.text}\n - \n"
+                            val text = "${view.text}\n"
                             ingredients.append(text)
                         }
                     }
@@ -122,7 +116,7 @@ class EditFragment : Fragment() {
                     name = title,
                     description = description,
                     recipe = recipe,
-                    ingredients = ingredients.split("\n")
+                    ingredients = ingredients.trim().split("\n")
                 )
             }
         }
@@ -169,31 +163,11 @@ class EditFragment : Fragment() {
         return arguments?.getSerializable(BUNDLE_COCKTAIL) as Cocktail?
     }
 
-    private fun openDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        val customDialog =
-            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_layout, null)
-        builder.setView(customDialog)
-        val dialog = builder.create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val buttonAdd = customDialog.findViewById<Button>(R.id.addButton)
-        val buttonCancel = customDialog.findViewById<Button>(R.id.cancelButton)
-        val editText = customDialog.findViewById<TextInputEditText>(R.id.titleEditText)
-        val inputLayout = customDialog.findViewById<TextInputLayout>(R.id.titleInputLayout)
-
-        buttonAdd.setOnClickListener {
-            val ingredient = editText.text.toString()
-            if (ingredient.isNotBlank()) {
-                addChip(ingredient)
-                dialog.dismiss()
-            } else inputLayout.error = getString(R.string.add_ingredient)
+    private fun openAddingIngredientDialog() {
+        val dialogFragment = IngredientAddingDialog { ingredient ->
+            addChip(ingredient)
         }
-
-        buttonCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        dialogFragment.show(childFragmentManager, "ADD_INGREDIENT_DIALOG")
     }
 
     private fun inject() {
