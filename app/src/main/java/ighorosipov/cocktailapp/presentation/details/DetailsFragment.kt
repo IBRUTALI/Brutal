@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.FragmentDetailsBinding
-import ighorosipov.cocktailapp.presentation.BUNDLE_COCKTAIL
 import ighorosipov.cocktailapp.presentation.BUNDLE_COCKTAIL_ID
 import ighorosipov.cocktailapp.presentation.utils.extensions.appComponent
 import ighorosipov.cocktailapp.presentation.utils.extensions.lazyViewModel
@@ -69,7 +68,7 @@ class DetailsFragment : Fragment() {
     private fun editButton() {
         binding.editButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putSerializable(BUNDLE_COCKTAIL, viewModel.cocktail.value?.data)
+            viewModel.cocktail.value?.data?.id?.let { id -> bundle.putInt(BUNDLE_COCKTAIL_ID, id) }
             findNavController().navigate(R.id.action_detailsFragment_to_editFragment, bundle)
         }
     }

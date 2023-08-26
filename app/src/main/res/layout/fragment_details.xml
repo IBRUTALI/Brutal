@@ -53,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/base_padding_small"
+                    android:layout_marginBottom="@dimen/base_padding_medium"
                     android:textAppearance="@style/Text.Subtitle"
                     tools:text="Pink Lemonade" />
 
@@ -60,7 +61,6 @@
                     android:id="@+id/descriptionText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/base_padding_medium"
                     android:gravity="center_horizontal"
                     android:textAppearance="@style/Text.Normal"
                     tools:text="To make this homemade pink lemonade, simply combine all the ingredients in a pitcher." />
