@@ -9,6 +9,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import ighorosipov.cocktailapp.domain.model.Cocktail
 import ighorosipov.cocktailapp.domain.repository.CocktailRepository
+import ighorosipov.cocktailapp.domain.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -30,9 +31,20 @@ class EditViewModel @AssistedInject constructor(
     init {
         if (cocktailId != null)
             viewModelScope.launch(Dispatchers.IO) {
-                repository.findCocktailById(cocktailId)?.let {
-                    _startCocktailValues.postValue(it.data)
-                    _cocktail.postValue(it.data)
+                repository.findCocktailById(cocktailId)?.let {result ->
+                    when(result) {
+                        is Result.Loading -> {
+
+                        }
+                        is Result.Success -> {
+                            _startCocktailValues.postValue(result.data)
+                            _cocktail.postValue(result.data)
+                        }
+                        is Result.Error -> {
+
+                        }
+                    }
+
                 }
             }
         else {
@@ -75,10 +87,19 @@ class EditViewModel @AssistedInject constructor(
         }
     }
 
-    fun setIngredientChanges(ingredient: List<String>) {
+    fun setIngredientChanges(ingredient: String) {
+        cocktail.value?.let {
+            if (ingredient in it.ingredients) return
+            _cocktail.postValue(
+                it.copy(ingredients = it.ingredients.plus(ingredient))
+            )
+        }
+    }
+
+    fun deleteIngredient(ingredient: String) {
         cocktail.value?.let {
             _cocktail.postValue(
-                it.copy(ingredients = ingredient)
+                it.copy(ingredients = it.ingredients.remove(ingredient.trim()))
             )
         }
     }
@@ -108,6 +129,12 @@ class EditViewModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory {
         fun create(@Assisted cocktailId: Int?): EditViewModel
+    }
+
+    private fun List<String>.remove(string: String): List<String> {
+        val result = this.toMutableList()
+        result.remove(string)
+        return result
     }
 
 }

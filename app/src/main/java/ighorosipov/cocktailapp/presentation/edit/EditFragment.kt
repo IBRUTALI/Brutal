@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.forEach
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -56,22 +55,11 @@ class EditFragment : Fragment() {
         chip.isCloseIconVisible = true
         chip.setCloseIconResource(R.drawable.cancel)
         chip.setOnCloseIconClickListener {
-            binding.chipGroup.removeView(chip)
+            binding.chipGroup.removeView(it)
+            viewModel.deleteIngredient((it as Chip).text.toString())
         }
-        binding.chipGroup.addView(chip, 0)
-    }
+        binding.chipGroup.addView(chip, binding.chipGroup.indexOfChild(binding.addIngredient))
 
-    private fun chipGroupToList() {
-        val ingredients = StringBuilder()
-        binding.chipGroup.forEach { view ->
-            when (view) {
-                is Chip -> {
-                    val text = "${view.text}\n"
-                    ingredients.append(text)
-                }
-            }
-        }
-        viewModel.setIngredientChanges(ingredients.trim().split("\n"))
     }
 
     private fun saveButton() {
@@ -102,8 +90,8 @@ class EditFragment : Fragment() {
                 titleInputLayout.editText?.setText(cocktail?.name, TextView.BufferType.EDITABLE)
                 descriptionInputLayout.editText?.setText(cocktail?.description, TextView.BufferType.EDITABLE)
                 recipeInputLayout.editText?.setText(cocktail?.recipe, TextView.BufferType.EDITABLE)
-                cocktail?.ingredients?.forEach { ingredient ->
-                    addChip(ingredient)
+                cocktail?.ingredients?.forEach {
+                    addChip(it)
                 }
             }
         }
@@ -131,8 +119,8 @@ class EditFragment : Fragment() {
 
     private fun openAddingIngredientDialog() {
         val dialogFragment = IngredientAddingDialog { ingredient ->
-            addChip(ingredient)
-            chipGroupToList()
+            if (ingredient !in viewModel.cocktail.value!!.ingredients) addChip(ingredient)
+            viewModel.setIngredientChanges(ingredient)
         }
         dialogFragment.show(childFragmentManager, "ADD_INGREDIENT_DIALOG")
     }
