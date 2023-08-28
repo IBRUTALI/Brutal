@@ -1,6 +1,7 @@
 package ighorosipov.cocktailapp.presentation.main
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +45,7 @@ class MainFragment : Fragment() {
         cocktailsObserver()
         itemClickListener()
         addButton()
+        shareButton()
     }
 
     private fun getCocktails() {
@@ -54,18 +56,23 @@ class MainFragment : Fragment() {
         viewModel.cocktails.observe(viewLifecycleOwner) { result ->
             when(result) {
                 is Result.Loading -> {
-
+                    binding.loadingProgressBar.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
                     if (result.data.isNullOrEmpty()) {
-                        setupUi(View.VISIBLE)
-                    } else {
                         setupUi(View.GONE)
+                        noCocktailSetupUi(View.VISIBLE)
+                        binding.loadingProgressBar.visibility = View.GONE
+                    } else {
+                        setupUi(View.VISIBLE)
+                        noCocktailSetupUi(View.GONE)
+                        binding.loadingProgressBar.visibility = View.GONE
                         adapter.setList(result.data)
                     }
                 }
                 is Result.Error -> {
                     showToast(result.message ?: "Something went wrong",  false)
+                    binding.loadingProgressBar.visibility = View.GONE
                 }
             }
         }
@@ -78,13 +85,14 @@ class MainFragment : Fragment() {
 
     private fun setupUi(visibility: Int) {
         binding.apply {
-            mainTitle.visibility = if (visibility == View.VISIBLE) {
-                View.GONE
-            } else View.VISIBLE
-            mainImage.visibility = visibility
-            emptyTitle.visibility = visibility
-            emptyDescription.visibility = visibility
-            emptyArrow.visibility = visibility
+            shareImageView.visibility = visibility
+            mainRecycler.visibility = visibility
+        }
+    }
+
+    private fun noCocktailSetupUi(visibility: Int) {
+        binding.apply {
+            noCocktailsGroup.visibility = visibility
         }
     }
 
@@ -106,6 +114,12 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun shareButton() {
+        binding.shareImageView.setOnClickListener {
+            onShareClick()
+        }
+    }
+
     private fun setBottomAppBarBackground() {
         val radius = resources.getDimension(R.dimen.bottomappbar_corners_radius)
         val bottomBarBackground = binding.bottomAppBar.background as MaterialShapeDrawable
@@ -113,6 +127,26 @@ class MainFragment : Fragment() {
             bottomBarBackground.shapeAppearanceModel.toBuilder()
                 .setTopRightCorner(CornerFamily.ROUNDED, radius)
                 .setTopLeftCorner(CornerFamily.ROUNDED, radius).build()
+    }
+
+    private fun onShareClick() {
+        val cocktails = viewModel.cocktails.value?.data?.reversed()?.take(4) ?: return
+        val shareText = generateShareText(cocktails.map { it.name })
+
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+
+    private fun generateShareText(cocktails: List<String>): String {
+        val displayedCocktails = cocktails.joinToString(", ")
+
+        return getString(R.string.share_message, displayedCocktails)
     }
 
     private fun inject() {

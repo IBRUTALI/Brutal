@@ -16,38 +16,24 @@
         style="@style/Text.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base_padding_large"
+        android:layout_marginTop="36dp"
         android:text="@string/my_cocktails"
-        android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/addFirstCocktailImage" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
         android:paddingHorizontal="20dp"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainTitle"
-        tools:listitem="@layout/item_cocktail"/>
-
-    <ImageView
-        android:id="@+id/mainImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/main_image"
-        android:src="@drawable/summer_girl"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainRecycler"
-        app:layout_constraintVertical_bias="0.1" />
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/loading_progress_bar"
@@ -60,19 +46,42 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/emptyTitle"
-        style="@style/Text.Title"
+    <ImageView
+        android:id="@+id/share_image_view"
+        android:layout_width="@dimen/corner_button_size"
+        android:layout_height="@dimen/corner_button_size"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/share_cocktails"
+        android:backgroundTint="@color/blue_lite"
+        android:src="@drawable/ic_share"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/no_cocktails_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_cocktails"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/mainImage"
-        app:layout_constraintStart_toStartOf="@+id/mainImage"
-        app:layout_constraintTop_toBottomOf="@+id/mainImage" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="addFirstCocktailImage, addFirstCocktailTextView, addFirstCocktailArrow"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/addFirstCocktailImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:contentDescription="@string/main_image"
+        android:src="@drawable/summer_girl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emptyDescription"
+        android:id="@+id/addFirstCocktailTextView"
         style="@style/Text.Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,22 +90,23 @@
         android:lines="2"
         android:text="@string/add_your_first_cocktail_here"
         android:textColor="@color/gray"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/emptyTitle"
-        app:layout_constraintStart_toStartOf="@+id/emptyTitle"
-        app:layout_constraintTop_toBottomOf="@+id/emptyTitle" />
+        app:layout_constraintBottom_toTopOf="@+id/addFirstCocktailArrow"
+        app:layout_constraintEnd_toEndOf="@+id/mainTitle"
+        app:layout_constraintStart_toStartOf="@+id/mainTitle"
+        app:layout_constraintTop_toBottomOf="@+id/mainTitle"
+        app:layout_constraintVertical_bias="0.137" />
 
     <ImageView
-        android:id="@+id/emptyArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/addFirstCocktailArrow"
+        android:layout_width="9dp"
+        android:layout_height="34dp"
+
+        android:layout_marginBottom="116dp"
         android:backgroundTint="@color/gray_200"
-        android:layout_marginVertical="@dimen/base_padding_medium"
         android:src="@drawable/arrow_down"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/emptyDescription"
-        app:layout_constraintStart_toStartOf="@+id/emptyDescription"
-        app:layout_constraintTop_toBottomOf="@+id/emptyDescription" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/addFirstCocktailTextView"
+        app:layout_constraintStart_toStartOf="@+id/addFirstCocktailTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

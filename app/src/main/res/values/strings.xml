@@ -23,4 +23,6 @@
     <string name="dialog_delete_the_recipe">Are you sure you want to delete the recipe?</string>
     <string name="confirm_action">Confirm action</string>
     <string name="no">No</string>
+    <string name="share_cocktails">Share cocktails</string>
+    <string name="share_message">See what cocktails I created in the Cocktail Bar app!\n%1$s and others\nDo you want to try it?</string>
 </resources>
