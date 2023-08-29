@@ -1,9 +1,11 @@
 package ighorosipov.cocktailapp.presentation.main
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.ItemCocktailBinding
 import ighorosipov.cocktailapp.domain.model.Cocktail
@@ -24,6 +26,11 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         with(holder.binding) {
             itemImage.setImageResource(R.drawable.cocktail)
             itemTitle.text = cocktailList[position].name
+            Glide.with(holder.itemView.context)
+                .load(cocktailList[position].image?.let { Uri.parse(it) })
+                .centerCrop()
+                .placeholder(R.drawable.cocktail)
+                .into(itemImage)
         }
 
         holder.itemView.setOnClickListener {

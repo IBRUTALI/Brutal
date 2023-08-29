@@ -1,6 +1,7 @@
 package ighorosipov.cocktailapp.presentation.details
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.FragmentDetailsBinding
 import ighorosipov.cocktailapp.presentation.BUNDLE_COCKTAIL_ID
@@ -55,11 +57,16 @@ class DetailsFragment : Fragment() {
     private fun subscribeOnCocktailDetail() {
         viewModel.cocktail.observe(viewLifecycleOwner) { cocktail ->
             binding.apply {
-                cocktail.data?.let {
-                    titleText.text = it.name
-                    descriptionText.text = it.description
-                    ingredientsText.text = TextUtils.join("\n-\n", it.ingredients)
-                    recipeText.text = it.recipe
+                cocktail.data?.let { cocktail ->
+                    titleText.text = cocktail.name
+                    descriptionText.text = cocktail.description
+                    ingredientsText.text = TextUtils.join("\n-\n", cocktail.ingredients)
+                    recipeText.text = cocktail.recipe
+                    Glide.with(requireContext())
+                        .load(cocktail.image?.let { Uri.parse(it) })
+                        .centerCrop()
+                        .placeholder(R.drawable.cocktail)
+                        .into(binding.detailsImage)
                 }
             }
         }

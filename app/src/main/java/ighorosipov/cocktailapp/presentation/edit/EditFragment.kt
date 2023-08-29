@@ -1,14 +1,19 @@
 package ighorosipov.cocktailapp.presentation.edit
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import ighorosipov.cocktailapp.R
 import ighorosipov.cocktailapp.databinding.FragmentEditBinding
@@ -22,6 +27,11 @@ class EditFragment : Fragment() {
     private val binding get() = mBinding!!
     private val viewModel by lazyViewModel {
         requireContext().appComponent().editViewModel().create(getBundle())
+    }
+    private var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
+
+    init {
+        pickMedia = registerPhotoPicker()
     }
 
     override fun onCreateView(
@@ -39,6 +49,7 @@ class EditFragment : Fragment() {
         addIngredientButton()
         saveButton()
         cancelButton()
+        pickImageButton()
         subscribeOnCocktailFieldChanges()
         validateEditFields()
     }
@@ -78,6 +89,12 @@ class EditFragment : Fragment() {
         }
     }
 
+    private fun pickImageButton() {
+        binding.imageEdit.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+    }
+
     private fun subscribeOnInsert() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) findNavController().popBackStack()
@@ -94,6 +111,13 @@ class EditFragment : Fragment() {
                     addChip(it)
                 }
             }
+        }
+        viewModel.cocktail.observe(viewLifecycleOwner) { cocktail ->
+            Glide.with(requireContext())
+                .load(cocktail?.image?.let { Uri.parse(it) })
+                .centerCrop()
+                .placeholder(R.drawable.empty_image)
+                .into(binding.imageEdit)
         }
     }
 
@@ -123,6 +147,14 @@ class EditFragment : Fragment() {
             viewModel.setIngredientChanges(ingredient)
         }
         dialogFragment.show(childFragmentManager, "ADD_INGREDIENT_DIALOG")
+    }
+    
+    private fun registerPhotoPicker(): ActivityResultLauncher<PickVisualMediaRequest> {
+        return registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                viewModel.setImageChanges(uri.toString())
+            }
+        }
     }
 
     private fun inject() {
