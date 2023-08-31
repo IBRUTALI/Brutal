@@ -114,9 +114,9 @@ class EditFragment : Fragment() {
         }
         viewModel.cocktail.observe(viewLifecycleOwner) { cocktail ->
             Glide.with(requireContext())
+                .asDrawable()
                 .load(cocktail?.image?.let { Uri.parse(it) })
                 .centerCrop()
-                .placeholder(R.drawable.empty_image)
                 .into(binding.imageEdit)
         }
     }

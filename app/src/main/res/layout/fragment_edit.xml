@@ -19,6 +19,7 @@
             android:id="@+id/imageCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_padding_big"
             app:cardCornerRadius="@dimen/base_corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,15 @@
                 android:id="@+id/imageEdit"
                 android:layout_width="@dimen/base_image_size"
                 android:layout_height="@dimen/base_image_size"
-                android:background="@color/gray_200"
+                android:contentDescription="@string/image_edit"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@drawable/cocktail" />
+
+            <ImageView
+                android:id="@+id/imageOverlap"
+                android:layout_width="@dimen/base_image_size"
+                android:layout_height="@dimen/base_image_size"
+                android:background="@color/transparent_gray_200"
                 android:contentDescription="@string/image_edit"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/empty_image" />

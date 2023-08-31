@@ -8,4 +8,5 @@
     <color name="gray_200">#EEEEEE</color>
     <color name="red_lite">#FF0000</color>
     <color name="transparent">#00000000</color>
+    <color name="transparent_gray_200">#68404040</color>
 </resources>
