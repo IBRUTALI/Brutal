@@ -1,21 +1,27 @@
-# Приложение для хранения пользовательских рецептов коктейлей.
+# CocktailApp
+
+Приложение для хранения пользовательских рецептов коктейлей.
 
 ## Быстрый обзор приложения:
-1. Добавление коктейля:
+
 <p align="center">
-  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/4be16866-f511-40c4-bb21-f23d069614a4" width="250" height="500" />
+  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/4be16866-f511-40c4-bb21-f23d069614a4" width="250" height="525" />
+  <h4 align="center">Добавление коктейля</h4>
 </p>
-2. Редактирование коктейля:
+
 <p align="center">
-  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/1afed425-48e0-477d-96b5-cc5895648a37" width="250" height="500" />
+  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/1afed425-48e0-477d-96b5-cc5895648a37" width="250" height="525" />
+  <h4 align="center">Редактирование коктейля</h4>
 </p>
-3. Удаление коктейля:
+
 <p align="center">
-  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/600ad811-0105-45f9-82c7-257bbe55bd8a" width="250" height="500" />
+  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/600ad811-0105-45f9-82c7-257bbe55bd8a" width="250" height="525" />
+  <h4 align="center">Удаление коктейля</h4>
 </p>
-4. Шаринг коктейля:
+
 <p align="center">
-  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/f68bc28a-b728-4f2e-981e-6a7482c0e14a" width="250" height="500" />
+  <img src="https://github.com/IBRUTALI/CocktailApp/assets/96013243/f68bc28a-b728-4f2e-981e-6a7482c0e14a" width="250" height="525" />
+  <h4 align="center">Шаринг коктейля</h4>
 </p>
 
 
